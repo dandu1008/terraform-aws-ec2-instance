@@ -7,8 +7,8 @@ locals {
 # Note: network_interface can't be specified together with associate_public_ip_address
 ######
 resource "aws_instance" "this" {
-  count = "${var.instance_count * (1 - local.is_t_instance_type)}"
-
+  #count = "${var.instance_count * (1 - local.is_t_instance_type)}"
+  count = 1
   ami                    = "${var.ami}"
   instance_type          = "${var.instance_type}"
   user_data              = "${var.user_data}"
@@ -35,8 +35,8 @@ resource "aws_instance" "this" {
   placement_group                      = "${var.placement_group}"
   tenancy                              = "${var.tenancy}"
 
-  tags = "${merge(local.instance_name, var.tags)}"
-
+  #tags = "${merge(local.instance_name, var.tags)}"
+  
   lifecycle {
     # Due to several known issues in Terraform AWS provider related to arguments of aws_instance:
     # (eg, https://github.com/terraform-providers/terraform-provider-aws/issues/2036)
@@ -46,8 +46,8 @@ resource "aws_instance" "this" {
 }
 
 resource "aws_instance" "this_t2" {
-  count = "${var.instance_count * local.is_t_instance_type}"
-
+  #count = "${var.instance_count * local.is_t_instance_type}"
+  count = 1
   ami                    = "${var.ami}"
   instance_type          = "${var.instance_type}"
   user_data              = "${var.user_data}"
@@ -78,8 +78,8 @@ resource "aws_instance" "this_t2" {
     cpu_credits = "${var.cpu_credits}"
   }
 
-  tags = "${merge(local.instance_name, var.tags)}"
-
+  #tags = "${merge(local.instance_name, var.tags)}"
+  
   lifecycle {
     # Due to several known issues in Terraform AWS provider related to arguments of aws_instance:
     # (eg, https://github.com/terraform-providers/terraform-provider-aws/issues/2036)
