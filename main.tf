@@ -7,7 +7,7 @@ locals {
 ######
 # Note: network_interface can't be specified together with associate_public_ip_address
 ######
-resource "aws_instance" "this" {
+resource "aws_instance" "this_dum" {
   #count = "${var.instance_count * (1 - local.is_t_instance_type)}"
   count = 1
   ami                    = "${var.ami}"
