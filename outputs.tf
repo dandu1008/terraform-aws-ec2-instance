@@ -12,7 +12,7 @@ locals {
   this_vpc_security_group_ids       = "${compact(concat(coalescelist(flatten(aws_instance.this.*.vpc_security_group_ids), flatten(aws_instance.this_t2.*.vpc_security_group_ids)), list("")))}"
   this_subnet_id                    = "${compact(concat(coalescelist(aws_instance.this.*.subnet_id, aws_instance.this_t2.*.subnet_id), list("")))}"
   this_credit_specification         = "${aws_instance.this_t2.*.credit_specification}"
-  this_tags                         = "${coalescelist(flatten(aws_instance.this.*.tags), flatten(aws_instance.this_t2.*.tags))}"
+  #this_tags                         = "${coalescelist(flatten(aws_instance.this.*.tags), flatten(aws_instance.this_t2.*.tags))}"
 }
 
 output "id" {
@@ -85,8 +85,9 @@ output "credit_specification" {
   description = "List of credit specification of instances"
   value       = ["${local.this_credit_specification}"]
 }
-
+/*
 output "tags" {
   description = "List of tags of instances"
   value       = ["${local.this_tags}"]
 }
+*/
