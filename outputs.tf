@@ -1,4 +1,5 @@
-locals {
+/*
+  locals {
   this_id                           = "${compact(concat(coalescelist(aws_instance.this.*.id, aws_instance.this_t2.*.id), list("")))}"
   this_availability_zone            = "${compact(concat(coalescelist(aws_instance.this.*.availability_zone, aws_instance.this_t2.*.availability_zone), list("")))}"
   this_key_name                     = "${compact(concat(coalescelist(aws_instance.this.*.key_name, aws_instance.this_t2.*.key_name), list("")))}"
@@ -80,7 +81,7 @@ output "subnet_id" {
   description = "List of IDs of VPC subnets of instances"
   value       = ["${local.this_subnet_id}"]
 }
-/*
+
 output "credit_specification" {
   description = "List of credit specification of instances"
   value       = ["${local.this_credit_specification}"]
